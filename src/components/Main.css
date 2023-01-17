@@ -11,4 +11,6 @@
     cursor: pointer;
     box-shadow: 5px 5px 15px 0px;
 }
-
+.Main .badge{
+    background-color: rgba(154, 206, 58, 0.589);
+}
