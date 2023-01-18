@@ -35,10 +35,10 @@ export default function Main(props){
         
         <div className="movies-list">
 
-            {moviesArray.map(movie=>{
+            {moviesArray.map((movie,index)=>{
                 return (
                   <Movie
-                    key={movie.id}
+                    key={movie.title} //normally an unique Id
                     movie={movie}
                     deleteMovie={deleteMovie}
                   />

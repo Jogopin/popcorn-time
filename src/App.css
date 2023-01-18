@@ -2,16 +2,24 @@
   text-align: center;
 }
 .btn{
+  border:none;
   padding: 0.5rem 1rem;
-  background-color: firebrick;
+  background-color: rgba(178, 34, 34, 0.863);
   color: white;
   font-weight: 600;
   letter-spacing: 1px;
   border-radius: 5px;
   transition: 0.3s;
-  border-color: none;
+  border: none;
+  
   }
 .btn:hover{
-    box-shadow: 5px 5px 15px 0px;
+    cursor:pointer;
+    box-shadow: 5px 5px 40px black;
     font-size: 1.2rem;
+}
+.App label{
+  display: block;
+  margin: 0.5rem;
+ 
 }

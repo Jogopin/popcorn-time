@@ -1,5 +1,6 @@
+import "./Movie.css"
 export default function Movie(props){
-    console.log("===>",props)
+
 
     const {id,rating,imgURL,title,genres,year} =props.movie
     const deleteMovie = props.deleteMovie
@@ -15,9 +16,11 @@ export default function Movie(props){
         {imgURL ? (
           <img className="poster" src={imgURL} alt="movie.poster" />
         ) : (
-          <img src="https://via.placeholder.com/182x268" alt="movie.poster" />
+          <img className="poster"  src="https://via.placeholder.com/182x268" alt="movie.poster" />
         )}
+        
         <div className="mov-det-container">
+
           <h2>{title}</h2>
           {/* <h3>Genre: {movie.genres.map((genre,index)=>(<span key={index}>{genre} &nbsp;</span>))} </h3> */}
           <h3>Genre: {genres.join(", ")}</h3>
@@ -25,11 +28,12 @@ export default function Movie(props){
           <h3>Rating: {rating}</h3>
           <button className="btn"
             onClick={() => {
-              deleteMovie(id);
+              deleteMovie(title);
             }}
           >
             Delete
           </button>
+
         </div>
       </div>
     );
