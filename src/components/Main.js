@@ -1,43 +1,48 @@
 import "./Main.css"
-import moviesFromJson from "../data/movies.json"
-import { useState } from "react"
+// import moviesFromJson from "../data/movies.json"
+// import { useState } from "react"
+import Movie from "./Movie"
 
 
-export default function Main(){
-   
+export default function Main(props){
     
-    const [moviesArray,setMoviesArray] = useState(moviesFromJson)
+    const moviesArray = props.moviesArray
+    const setMoviesArray=props.setMoviesArray
+    const deleteMovie=props.deleteMovie
+    // const [moviesArray,setMoviesArray] = useState(moviesFromJson)
 
-    const deleteMovie = (id) => {
-        const newListOfMovies = moviesArray.filter(movie=>(movie.id!==id))
-        setMoviesArray(newListOfMovies)
+    
+    const sortRatingAscending= ()=>{
+        setMoviesArray((prevMovies)=>{
+            const newArray= [...prevMovies]
+            return newArray.sort((a,b)=>{return b.rating - a.rating})
+        })
     }
-    const titleMessage = moviesArray.length>0 ? <h2> Current number of movies: {moviesArray.length}</h2> : <h2>there are no movies, Sorry.</h2>
+    const sortRatingDescending= ()=>{
+        setMoviesArray((prevMovies)=>{
+             return [...prevMovies].sort((a,b)=>{return a.rating - b.rating})
+        })
+    }
+
+    
+    // const titleMessage = moviesArray.length>0 ? <h2> Current number of movies: {moviesArray.length}</h2> : <h2>there are no movies, Sorry.</h2>
     return(
+
     <div className="Main">
-        {titleMessage}
+        {/* {titleMessage} */}
+        <button onClick={sortRatingAscending}>Rating Ascending</button>
+        <button onClick={sortRatingDescending}>Rating Descending</button>
+        
         <div className="movies-list">
 
             {moviesArray.map(movie=>{
                 return (
-                    <div className="movie card" key={movie.id}>
-
-                        {movie.imgURL 
-                        ? <img src= {movie.imgURL} alt="movie.poster"/> 
-                        : <img src= "https://via.placeholder.com/182x268" alt="movie.poster"/> 
-                        }
-                        <h2>{movie.title}</h2>
-                        {/* <h3>Genre: {movie.genres.map((genre,index)=>(<span key={index}>{genre} &nbsp;</span>))} </h3> */}
-                        <h3>Genre2: {movie.genres.join(", ")}</h3>
-                        <h3>Year:{movie.year}</h3>
-                        <h3>Rating: {movie.rating}</h3>
-                        
-                        {/* conditional rendering with logical && operator */}
-                        {movie.rating >=8 && <h3 className="badge" >Recommended</h3>}
-
-                        <button onClick={()=>{ deleteMovie(movie.id) }} >Delete this movie</button>
-                    </div>
-                )
+                  <Movie
+                    key={movie.id}
+                    movie={movie}
+                    deleteMovie={deleteMovie}
+                  />
+                );
             })}
 
         </div>

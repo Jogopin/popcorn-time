@@ -1,16 +1,48 @@
+.Main .movies-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .Main .card {
-    max-width: 80%;
+    position: relative;
+    overflow: hidden;
+    min-width: 80%;
+    /* max-width: 80%;  */
+    
+    padding: 1rem 0.5rem;
     margin: 1rem auto;
-    padding:1rem;
+   
     border: 1px solid #666;
+    border-radius: 5px;
     box-shadow: 5px 5px 10px -5px;
     transition: 0.4s;
 }
-
 .Main .card:hover {
     cursor: pointer;
     box-shadow: 5px 5px 15px 0px;
 }
-.Main .badge{
-    background-color: rgba(154, 206, 58, 0.589);
+.Main .poster{
+    border-radius: 5px 5px 0 0;
 }
+
+.triangle {
+    font-size: 1rem;
+    position: absolute;
+    background-color: rgba(154, 206, 58, 0.589);
+    
+    
+    transform: translateX(-47%) rotate(-47deg) translateY(105%) rotate(0deg);
+    transform-origin: center top; 
+    padding: 0.5rem 4rem;
+    
+}
+
+ @media (min-width:1024px) {
+
+    .Main .card {
+       min-width: 20%;
+       width: 20%;
+    
+    }
+    
+} 
