@@ -12,8 +12,13 @@ function App() {
 
   const [moviesArray,setMoviesArray] = useState(moviesFromJson)
 
+  const [searchQuery,setSearchQuery] = useState("")
  
+  const moviesToDisplay = moviesArray.filter((movie) =>
+    movie.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
+  
 
   const deleteMovie = (titleToDelete) => {
     const newListOfMovies = moviesArray.filter((movie) => movie.title !== titleToDelete);
@@ -24,13 +29,25 @@ function App() {
 
   return (
     <div className="App">
-      <Header moviesArray={moviesArray} />
-      <AddMovie
-        setMoviesArray={setMoviesArray}
-        moviesArray={moviesArray}
-      />
+      <Header moviesArray={moviesToDisplay} />
+      <AddMovie setMoviesArray={setMoviesArray} moviesArray={moviesArray} />
+
+      <form>
+        <label>
+          <input
+            type="text"
+            name="searchQuery"
+            placeholder="search by title"
+            value={searchQuery}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+            }}
+          />
+        </label>
+      </form>
+
       <Main
-        moviesArray={moviesArray}
+        moviesArray={moviesToDisplay}
         setMoviesArray={setMoviesArray}
         deleteMovie={deleteMovie}
       />

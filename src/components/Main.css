@@ -1,4 +1,6 @@
 .Main .movies-list{
     display: flex;
     flex-wrap: wrap;
+    width:90%;
+    margin:auto;
 }
